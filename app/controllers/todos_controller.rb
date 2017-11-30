@@ -6,6 +6,14 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
+    @todos = Todo.all
+    if @todo.save
+      flash[:notice] = "success"
+      redirect_to todos_url
+    else
+      flash[:alert] = "gg.."
+      render :action => :index
+    end
   end
 
   private
