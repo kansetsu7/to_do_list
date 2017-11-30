@@ -1,2 +1,13 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+.add-todo{
+  background-color: green;
+  color: white;
+  /*border-radius: 50%;*/
+}
+
+/*Setup for non-mobile device*/
+@media (min-width: 768px){
+  
+}

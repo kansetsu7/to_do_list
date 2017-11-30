@@ -1,0 +1,71 @@
+<div class="container" id="todo_list">
+  <h1 class="text-center">Mission control center</h1>
+  <!-- Title -->
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+      <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <button type="button" class="add-todo">
+            <span class="sr-only">Status</span>
+            <span class="glyphicon glyphicon-unchecked"></span>
+          </button>
+        </div>
+          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">Name
+        </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Due date
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <button type="button" class="add-todo">
+            <span class="sr-only">Note</span>
+            <span class="glyphicon glyphicon-comment"></span>
+          </button>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <button type="button" class="add-todo">
+            <span class="sr-only">Edit</span>
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <button type="button" class="add-todo">
+            <span class="sr-only">Delete</span>
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- contents -->
+  <% @todos.each do |t| %>
+  <%= render :partial => "mission" %>
+  <% end %>
+    
+  </div>
+</div>
+
+<!-- navbar for adding new mission -->
+<nav class="navbar-fixed-bottom my-nav navbar navbar-default">
+  <div class="form container">
+    <%= form_for @todo, html:{class: "new_todo form-inline"} do |f| %>
+    <button type="submit" class="add-todo">
+      <span class="sr-only">Add todo</span>
+      <span class="glyphicon glyphicon-plus"></span>
+    </button>
+
+    <div class="form-group">
+      <%= f.label :name, "Mission:" %>
+      <%= f.text_field :name,  class: "form-control", placeholder: "yoo" %> 
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date, "Due date:" %>
+      <%= f.text_field :due_date,  class: "form-control", placeholder: "2017-01-01" %> 
+    </div>
+
+    <div class="form-group">
+      <%= f.label :note, "Note:" %>
+      <%= f.text_area :note,  class: "form-control", placeholder: "details..." %> 
+    </div>
+    <% end %>
+  </div>
+</nav>
