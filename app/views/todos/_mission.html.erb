@@ -25,10 +25,9 @@
           </button>
         </div>
         <div class="col-xs-1">
-          <button type="button" class="add-todo">
-            <span class="sr-only">Delete</span>
+          <%= link_to todo_path(t), method: :delete, data:{ confirm: "Are you sure?" } do %>
             <span class="glyphicon glyphicon-trash"></span>
-          </button>
+          <% end %>
         </div>
       </div>
     </div>
