@@ -2,21 +2,26 @@
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <div class="row">
-        <div class="col-xs-2">
-          <button type="button" class="add-todo">
-            <span class="sr-only">Status</span>
-            <span class="glyphicon glyphicon-unchecked"></span>
-          </button>
+        <!-- Status -->
+        <div class="col-xs-1">
+          <% if t.completed == false %>
+            <% if t.due_date.past? %>
+              <span class="sr-only">Expired</span>
+              <span class="glyphicon glyphicon-remove"></span>
+            <% else %>
+              <span class="sr-only">Complete the mission</span>
+              <span class="glyphicon glyphicon-unchecked text-center"></span>
+            <% end %>
+          <% else %>
+            <span class="sr-only">Complete the mission</span>
+            <span class="glyphicon glyphicon-check"></span>
+          <% end %>
         </div>
-          <div class="col-xs-5"><%= t.name %>
+          <div class="col-xs-3"><%= t.name %>
         </div>
           <div class="col-xs-2"><%= t.due_date %>
         </div>
-        <div class="col-xs-1">
-          <button type="button" class="add-todo">
-            <span class="sr-only">Note</span>
-            <span class="glyphicon glyphicon-comment"></span>
-          </button>
+        <div class="col-xs-3"><%= t.note %>
         </div>
         <div class="col-xs-1">
           <button type="button" class="add-todo">
@@ -25,8 +30,11 @@
           </button>
         </div>
         <div class="col-xs-1">
-          <%= link_to todo_path(t), method: :delete, data:{ confirm: "Are you sure?" } do %>
-            <span class="glyphicon glyphicon-trash"></span>
+          <% if t.due_date.past? == false || t.completed %>
+            <span class="sr-only">Delete</span>
+            <%= link_to todo_path(t), method: :delete, data:{ confirm: "Are you sure?" } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
           <% end %>
         </div>
       </div>
