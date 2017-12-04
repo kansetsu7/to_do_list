@@ -1,6 +1,6 @@
 <% @todos.each do |t| %>
-  <div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+  <div class="row mission-row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1" id="mission-content">
       <div class="row">
         <!-- Status -->
         <div class="col-xs-1">
@@ -9,12 +9,16 @@
               <span class="sr-only">Expired</span>
               <span class="glyphicon glyphicon-remove"></span>
             <% else %>
-              <span class="sr-only">Complete the mission</span>
-              <span class="glyphicon glyphicon-unchecked text-center"></span>
+            <%= link_to complete_todo_path(t), method: :patch do %>
+              <span class="sr-only">Incomplete the mission</span>
+              <span class="glyphicon glyphicon-unchecked" id="gly-btn"></span>
+              <% end %>
             <% end %>
           <% else %>
+            <%= link_to complete_todo_path(t), method: :patch do %>
             <span class="sr-only">Complete the mission</span>
-            <span class="glyphicon glyphicon-check"></span>
+            <span class="glyphicon glyphicon-check" id="gly-btn"></span>
+            <% end %>
           <% end %>
         </div>
           <div class="col-xs-3"><%= t.name %>
@@ -23,20 +27,19 @@
         </div>
         <div class="col-xs-3"><%= t.note %>
         </div>
-        <div class="col-xs-1">
-          <button type="button" class="add-todo">
-            <span class="sr-only">Edit</span>
-            <span class="glyphicon glyphicon-pencil"></span>
-          </button>
-        </div>
-        <div class="col-xs-1">
-          <% if t.due_date.past? == false || t.completed %>
+        <% if t.due_date.past? == false || t.completed %>
+          <div class="col-xs-1">
+            <%= link_to edit_todo_path(t) do %>
+              <span class="glyphicon glyphicon-pencil" id="gly-btn"></span>
+            <% end %>
+          </div>
+          <div class="col-xs-1">
             <span class="sr-only">Delete</span>
             <%= link_to todo_path(t), method: :delete, data:{ confirm: "Are you sure?" } do %>
-              <span class="glyphicon glyphicon-trash"></span>
+              <span class="glyphicon glyphicon-trash" id="gly-btn"></span>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,0 +1,9 @@
+<% if @todo.errors.present? %>
+  <% @todo.errors.each do |error, message| %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= "•#{error.capitalize} #{message}" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,26 +1,6 @@
 <div class="container" id="todo_list">
-  <h1 class="text-center">Mission control center</h1>
-  <p class="text-center" style="color: green"><%= flash[:notice] %></p>
-  <p class="text-center" style="color: red"><%= flash[:alert] %></p>
-  <!-- Title -->
-  <div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <div class="row">
-        <div class="col-xs-1">Status
-        </div>
-          <div class="col-xs-3">Name
-        </div>
-          <div class="col-xs-2">Due date
-        </div>
-        <div class="col-xs-3">Note
-        </div>
-        <div class="col-xs-1">Edit
-        </div>
-        <div class="col-xs-1">Delete
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- title -->
+  <%= render :partial => "title" %>
   <!-- contents -->
   <%= render :partial => "mission" %>
   
@@ -29,40 +9,32 @@
 </div>
 
 <!-- navbar for adding new mission -->
-<nav class="navbar-fixed-bottom my-nav navbar navbar-default">
+<nav class="navbar-fixed-bottom navbar-default">
   <div class="form container">
-    <% if @todo.errors.present? %>
-      <% @todo.errors.each do |error, message| %>
-        <div class="row">
-          <div class="col-xs-12">
-                <%= "•#{error.capitalize} #{message}" %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <%= render :partial => "show_errors" %>
         <%= form_for @todo, html:{class: "new_todo form-inline"} do |f| %>
-        <button type="submit" class="add-todo">
-          <span class="sr-only">Add todo</span>
-          <span class="glyphicon glyphicon-plus"></span>
-        </button>
+          <button type="submit" class="add-todo">
+            <span class="sr-only">Add todo</span>
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
 
-        <div class="form-group">
-          <%= f.label :name, "Mission:" %>
-          <%= f.text_field :name,  class: "form-control", placeholder: "yoo" %> 
-        </div>
+          <div class="form-group">
+            <%= f.label :name, "Mission:" %>
+            <%= f.text_field :name,  class: "form-control", placeholder: "yoo" %> 
+          </div>
 
-        <div class="form-group">
-          <%= f.label :date, "Due date:" %>
-          <%= f.text_field :due_date,  class: "form-control", placeholder: "2017-01-01" %> 
-        </div>
+          <div class="form-group">
+            <%= f.label :date, "Due date:" %>
+            <%= f.text_field :due_date,  class: "form-control", placeholder: "2017-01-01" %> 
+          </div>
 
-        <div class="form-group">
-          <%= f.label :note, "Note:" %>
-          <%= f.text_area :note,  class: "form-control", placeholder: "details..." %> 
-        </div>
+          <div class="form-group">
+            <%= f.label :note, "Note:" %>
+            <%= f.text_area :note,  class: "form-control", placeholder: "details..." %> 
+          </div>
+
         <% end %>
       </div>
     </div>
